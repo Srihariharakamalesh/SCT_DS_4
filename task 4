@@ -1,0 +1,18 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+df=pd.read_csv("road accident.csv")
+df.head()
+df.info()
+df['casualty_severity'].value_counts()
+df['casualty_reference'].value_counts().head(20)
+sns.countplot(x='casualty_severity', data=df)
+plt.title('Casualty Severity')
+plt.show()
+df.isna().sum()
+sns.scatterplot(x='casualty_class', y='casualty_type', hue='casualty_severity', data=df)
+df.corr()
+sns.heatmap(df.corr())
+numerical=[i for i in df.columns if df[i].dtype!='0']
+print('the numerical variables are',numerical)
